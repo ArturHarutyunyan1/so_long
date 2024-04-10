@@ -21,6 +21,12 @@ size_t	ft_strlen(const char *str);
 
 bool check_format(char *str);
 int ft_strcmp(char *str1, char *str2);
-bool validation(int argc, char **argv);
+void validation(int argc, char **argv);
+bool read_map(char *path);
+int get_size(char *path);
+void	*ft_memmove(void *dest, const void *src, size_t n);
+size_t	ft_strlcpy(char *dest, const char *src, size_t n);
+bool validate_map(int size, char **map);
+char	**ft_split(char const *s, char c);
 
 #endif
