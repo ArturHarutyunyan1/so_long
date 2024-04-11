@@ -18,9 +18,24 @@ typedef struct s_map
     int cols;
 }t_map;
 
+typedef struct s_player
+{
+    int x;
+    int y;
+}t_player;
+
+typedef struct s_game
+{
+    void *mlx;
+    void *mlx_win;
+    char **map;
+    t_player player;
+}t_game;
+
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1024
 # endif
+
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -40,12 +55,11 @@ size_t	ft_strlen(const char *str);
 bool check_format(char *str);
 int ft_strcmp(char *str1, char *str2);
 void validation(int argc, char **argv);
-bool read_map(char *path);
-int get_size(char *path);
 void	*ft_memmove(void *dest, const void *src, size_t n);
 size_t	ft_strlcpy(char *dest, const char *src, size_t n);
-bool validate_map(int size, char **map);
 char	**ft_split(char const *s, char c);
 void create_window(char *path);
-
+bool validate_map(t_game *game, char *path);
+int get_size(char *path);
+char	*ft_strdup(const char *src);
 #endif

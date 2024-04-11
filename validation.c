@@ -2,9 +2,11 @@
 
 void validation(int argc, char **argv)
 {
+    t_game game;
+
     if (argc == 2)
     {
-        if (check_format(argv[1]) || !read_map(argv[1]))
+        if (check_format(argv[1]) || !validate_map(&game,argv[1]))
             exit(write(2, "Invalid Map!\n", 13));
     }
     else
@@ -20,7 +22,7 @@ bool check_format(char *str)
     extension = ".ber";
     len = ft_strlen(str);
     ext = ft_strlen(extension);
-    if (len > ext && ft_strcmp(str + len - ext, extension) == 0 && str[ext + 1] == '\0')
+    if (len > ext && ft_strcmp(str + len - ext, extension) == 0 && str[len - ext - 1] == '.')
         return (true);
     return (false);
 }
@@ -28,102 +30,76 @@ bool check_format(char *str)
 int get_size(char *path)
 {
     int fd;
-    int flag;
-    int map_size;
-    char *line;
+    int size = 0;
 
     fd = open(path, O_RDONLY);
-    flag = 1;
-    map_size = 0;
-    while (flag)
+    if (fd == -1)
+        exit(write(2, "Invalid Map!\n", 13));
+    while (get_next_line(fd) > 0)
     {
-        line = get_next_line(fd);
-        if (line == NULL)
-            flag = 0;
-        else
-            map_size++;
+        size++;
     }
     close(fd);
-    return (map_size);
+    return size;
 }
 
-bool read_map(char *path)
+t_game read_map(char *path)
 {
-    int i;
+    t_game game;
     int fd;
+    int row;
     int size;
     char *line;
-    char **map;
 
-    i = 0;
-    size = get_size(path);
     fd = open(path, O_RDONLY);
-    map = (char **)malloc(size * sizeof(char *));
-    if (!map)
-    {
-        close(fd);
-        return (false);
-    }
-    while (i < size)
+    if (fd == -1)
+        exit(write(2, "Invalid Map!\n", 13));
+    row = 0;
+    size = get_size(path);
+    game.map = (char **)malloc((size + 1) * sizeof(char *));
+    if (game.map == NULL)
+        exit(write(2, "Invalid Map!\n", 13));
+    while (get_next_line(fd) > 0)
     {
         line = get_next_line(fd);
-        map[i] = malloc(ft_strlen(line) + 1);
-        ft_strlcpy(map[i], line, ft_strlen(line));
-        free(line);
-        i++;
+        game.map[row] = ft_strdup(line);
+        if (game.map[row] == NULL)
+            exit(write(2, "Invalid Map!\n", 13));
+        row++;
     }
-    if (!validate_map(size, map))
-    {
-        free(map);
-        close(fd);
-        return (false);
-    }
-    else
-    {
-        free(map);
-        close(fd);
-        return (true);
-    }
+    close(fd);
+    game.map[row] = NULL;
+    return (game);
 }
 
-bool validate_map(int size, char **map)
+bool validate_map(t_game *game, char *path)
 {
     int i;
     int j;
-    int k;
     int exit;
     int player;
     int collectable;
-    char **str;
+    char **map;
 
     i = 0;
     exit = 0;
-    collectable = 0;
     player = 0;
-    while (i < size)
+    collectable = 0;
+    *game = read_map(path);
+    map = game->map;
+    while (map[i])
     {
         j = 0;
-        str = ft_split(map[i], '\n');
-        if (!str)
+        while (map[i][j])
         {
-            free(str);
-            return (NULL);
-        }
-        while (str[j])
-        {
-            k = 0;
-            while (str[j][k]) {
-                if (str[j][k] == 'E')
-                    exit++;
-                else if (str[j][k] == 'P')
-                    player++;
-                else if (str[j][k] == 'C')
-                    collectable++;
-                k++;
-            }
+            if (map[i][j] == 'E')
+                exit++;
+            else if (map[i][j] == 'P')
+                player++;
+            else if (map[i][j] == 'C')
+                collectable++;
             j++;
         }
-        free(str);
         i++;
     }
     if (exit == 1 && player == 1 && collectable >= 1)
