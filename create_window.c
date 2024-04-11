@@ -50,13 +50,46 @@ static void parse_map(void *mlx, void *mlx_win, char *path)
     close(fd);
 }
 
+static t_map get_dimensions(char *path)
+{
+    int i;
+    int fd;
+    int len;
+    int size;
+    char *line;
+    t_map map;
+
+    fd = open(path, O_RDONLY);
+    size = get_size(path);
+    i = 0;
+    map.rows = 0;
+    map.cols = 0;
+    while (i < size)
+    {
+        line = get_next_line(fd);
+        len = ft_strlen(line);
+        if (len > map.cols)
+            map.cols = len;
+        map.rows++;
+        free(line);
+        i++;
+    }
+    return (map);
+}
+
 void create_window(char *path)
 {
     void *mlx;
     void *mlx_win;
+    int width;
+    int height;
+    t_map map_dimensions;
 
+    map_dimensions = get_dimensions(path);
+    width = map_dimensions.cols * 32;
+    height = map_dimensions.rows * 32;
     mlx = mlx_init();
-    mlx_win = mlx_new_window(mlx, 1024, 768, "So Long");
+    mlx_win = mlx_new_window(mlx, width, height, "So Long");
     parse_map(mlx, mlx_win, path);
     mlx_loop(mlx);
 }

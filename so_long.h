@@ -12,6 +12,12 @@ typedef struct s_data
     int height;
 }t_data;
 
+typedef struct s_map
+{
+    int rows;
+    int cols;
+}t_map;
+
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1024
 # endif
