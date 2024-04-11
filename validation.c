@@ -7,6 +7,8 @@ void validation(int argc, char **argv)
         if (check_format(argv[1]) || !read_map(argv[1]))
             exit(write(2, "Invalid Map!\n", 13));
     }
+    else
+        exit(write(2, "Invalid number of arguments!\n", 30));
 }
 
 bool check_format(char *str)
@@ -73,11 +75,13 @@ bool read_map(char *path)
     if (!validate_map(size, map))
     {
         free(map);
+        close(fd);
         return (false);
     }
     else
     {
         free(map);
+        close(fd);
         return (true);
     }
 }
@@ -100,6 +104,11 @@ bool validate_map(int size, char **map)
     {
         j = 0;
         str = ft_split(map[i], '\n');
+        if (!str)
+        {
+            free(str);
+            return (NULL);
+        }
         while (str[j])
         {
             k = 0;
@@ -114,6 +123,7 @@ bool validate_map(int size, char **map)
             }
             j++;
         }
+        free(str);
         i++;
     }
     if (exit == 1 && player == 1 && collectable >= 1)
