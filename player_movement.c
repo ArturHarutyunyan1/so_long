@@ -11,14 +11,17 @@ void move(t_game *game, int new_x, int new_y)
     current_col = game->player.x / 32;
     if (new_x >= 0 && new_x < game->map_width && new_y >= 0 && new_y < game->map_height)
     {
-        game->map[current_row][current_col] = '0';
-        new_row = new_y / 32;
-        new_col = new_x / 32;
-        game->map[new_row][new_col] = 'P';
-        game->player.x = new_x;
-        game->player.y = new_y;
-        mlx_clear_window(game->mlx, game->mlx_win);
-        parse_map(game);
+        if (game->map[new_y / 32][new_x / 32] != '1')
+        {
+            game->map[current_row][current_col] = '2';
+            new_row = new_y / 32;
+            new_col = new_x / 32;
+            game->map[new_row][new_col] = 'P';
+            game->player.x = new_x;
+            game->player.y = new_y;
+            mlx_clear_window(game->mlx, game->mlx_win);
+            parse_map(game);
+        }
     }
 }
 

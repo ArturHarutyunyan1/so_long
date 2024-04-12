@@ -1,10 +1,12 @@
 #include "so_long.h"
 
-void draw(t_game *game,int x, int y, char c)
+void draw(t_game *game,int x, int y, int c)
 {
     t_data img;
 
-    if (c == '0')
+    if (c == '2')
+        img.img = mlx_xpm_file_to_image(game->mlx, "textures/floor_eaten.xpm", &img.width, &img.height);
+    else if (c == '0')
         img.img = mlx_xpm_file_to_image(game->mlx, "textures/floor.xpm", &img.width, &img.height);
     else if (c == '1')
         img.img = mlx_xpm_file_to_image(game->mlx, "textures/wall.xpm", &img.width, &img.height);
