@@ -4,21 +4,22 @@ int get_size(char *path)
 {
     int fd;
     int flag;
-    int size;
+    int map_size;
     char *line;
 
     fd = open(path, O_RDONLY);
     flag = 1;
-    size = 0;
+    map_size = 0;
     while (flag)
     {
         line = get_next_line(fd);
         if (line == NULL)
             flag = 0;
-        free (line);
-        size++;
+        else
+            map_size++;
     }
-    return (size);
+    close(fd);
+    return (map_size);
 }
 
 char **read_map(char *path)
@@ -36,14 +37,14 @@ char **read_map(char *path)
     if (!map)
     {
         close(fd);
-        return (NULL);
+        return (false);
     }
     while (i < size)
     {
         line = get_next_line(fd);
         map[i] = malloc(ft_strlen(line) + 1);
         ft_strlcpy(map[i], line, ft_strlen(line));
-        free (line);
+        free(line);
         i++;
     }
     map[i] = NULL;

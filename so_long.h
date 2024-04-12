@@ -66,10 +66,12 @@ char	*ft_strdup(const char *src);
 int	ft_isalpha(int c);
 void	*ft_memmove(void *dest, const void *src, size_t n);
 int get_size(char *path);
+int	ft_isdigit(int c);
 
 void validation(int argc, char **argv);
 bool check_format(char *path);
 char **read_map(char *path);
 size_t	ft_strlcpy(char *dest, const char *src, size_t n);
+bool validate_map(char *path);
 
 #endif
