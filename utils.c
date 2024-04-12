@@ -91,7 +91,6 @@ t_game get_counts(char **str)
         }
         i++;
     }
-    printf("%d\n", game.collectables);
     return (game);
 }
 

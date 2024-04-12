@@ -33,13 +33,33 @@ void move(t_game *game, int new_x, int new_y)
 
 int key_press(int keycode, t_game *game)
 {
-    if (keycode == KEY_W)
+    static int counter;
+
+//    counter = 0;
+    if (keycode == KEY_ESC)
+        exit_game(game);
+    else if (keycode == KEY_W)
+    {
+        counter++;
         move(game, game->player.x, game->player.y - 32);
+    }
     else if (keycode == KEY_A)
+    {
+        counter++;
         move(game, game->player.x - 32, game->player.y);
+    }
     else if (keycode == KEY_S)
+    {
+        counter++;
         move(game, game->player.x, game->player.y + 32);
+    }
     else if (keycode == KEY_D)
+    {
+        counter++;
         move(game, game->player.x + 32, game->player.y);
+    }
+    write(1, "Moves: ", 7);
+    ft_putnbr(counter);
+    write(1, "\n", 1);
     return (0);
 }

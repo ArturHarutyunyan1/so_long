@@ -9,6 +9,7 @@
 #define KEY_A XK_a
 #define KEY_S XK_s
 #define KEY_D XK_d
+#define KEY_ESC XK_Escape
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -21,18 +22,6 @@
 #include <mlx.h>
 #include <X11/X.h>
 #include <X11/keysym.h>
-
-
-typedef struct s_data
-{
-    void *img;
-    char *addr;
-    int bpp;
-    int line_length;
-    int endian;
-    int width;
-    int height;
-}t_data;
 
 typedef struct s_map
 {
@@ -97,4 +86,7 @@ t_game get_counts(char **str);
 void free_matrix(char **matrix);
 void init_textures(t_game *game);
 void destroy_textures(t_game *game);
+int exit_game(t_game *game);
+int ft_putchar(int c);
+int ft_putnbr(int n);
 #endif
