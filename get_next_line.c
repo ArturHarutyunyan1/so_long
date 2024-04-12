@@ -9,7 +9,7 @@
 /*   Updated: 2024/02/21 15:35:02 by arturhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "get_next_line.h"
+#include "so_long.h"
 
 char	*ft_join(char *buffer, char *buf)
 {

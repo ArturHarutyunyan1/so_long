@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arturhar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/22 11:59:54 by arturhar          #+#    #+#             */
-/*   Updated: 2024/01/22 12:00:45 by arturhar         ###   ########.fr       */
+/*   Created: 2024/01/22 11:56:23 by arturhar          #+#    #+#             */
+/*   Updated: 2024/01/22 11:57:07 by arturhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "so_long.h"
 
-char	*ft_strchr(const char *str, int c)
+void	*ft_memset(void *ptr, int value, size_t	n)
 {
-	while ((char)c != *str)
-	{
-		if (!*str)
-			return (0);
-		str++;
-	}
-	return ((char *)str);
+	unsigned char	val;
+	char			*str;
+	size_t			i;
+
+	i = 0;
+	str = (char *)ptr;
+	val = (unsigned char)value;
+	while (i < n)
+		str[i++] = val;
+	return (str);
 }

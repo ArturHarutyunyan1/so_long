@@ -9,20 +9,17 @@
 /*   Updated: 2024/01/29 11:21:24 by arturhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "so_long.h"
 
-void	*ft_calloc(size_t count, size_t size)
+void	*ft_calloc(size_t items, size_t size)
 {
-	void	*ptr;
+    void	*ptr;
 
-	if ((count > 65535 || size > 65535)
-		&& (count > 0 && 65535 / count < size))
-		return (NULL);
-	ptr = malloc(count * size);
-	if (!ptr)
-		return (NULL);
-	ft_bzero (ptr, count * size);
-	return (ptr);
+    ptr = malloc(items * size);
+    if (!ptr)
+        return (NULL);
+    ft_memset(ptr, 0, items * size);
+    return (ptr);
 }
 
 // int main() {
