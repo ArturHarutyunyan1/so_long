@@ -13,13 +13,13 @@
 
 void	*ft_calloc(size_t items, size_t size)
 {
-    void	*ptr;
+	void	*ptr;
 
-    ptr = malloc(items * size);
-    if (!ptr)
-        return (NULL);
-    ft_memset(ptr, 0, items * size);
-    return (ptr);
+	ptr = malloc(items * size);
+	if (!ptr)
+		return (NULL);
+	ft_memset(ptr, 0, items * size);
+	return (ptr);
 }
 
 // int main() {
