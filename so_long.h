@@ -10,10 +10,16 @@
 #define KEY_S XK_s
 #define KEY_D XK_d
 
-#include "libft/libft.h"
-#include <stdbool.h>
-#include <mlx.h>
-#include <X11/keysym.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdint.h>
+# include <stdio.h>
+# include <ctype.h>
+# include <string.h>
+# include <fcntl.h>
+# include <stdbool.h>
+# include <mlx.h>
+# include <X11/keysym.h>
 
 
 typedef struct s_data
@@ -59,8 +65,11 @@ int	ft_isalnum(int c);
 char	*ft_strdup(const char *src);
 int	ft_isalpha(int c);
 void	*ft_memmove(void *dest, const void *src, size_t n);
+int get_size(char *path);
 
 void validation(int argc, char **argv);
 bool check_format(char *path);
+char **read_map(char *path);
+size_t	ft_strlcpy(char *dest, const char *src, size_t n);
 
 #endif
