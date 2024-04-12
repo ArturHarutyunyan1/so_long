@@ -1,28 +1,5 @@
 #include "so_long.h"
 
-void draw(t_game *game,int x, int y, char c)
-{
-    t_data img;
-
-    if (c == '2')
-        img.img = mlx_xpm_file_to_image(game->mlx, "textures/floor_eaten.xpm", &img.width, &img.height);
-    else if (c == '0')
-        img.img = mlx_xpm_file_to_image(game->mlx, "textures/floor.xpm", &img.width, &img.height);
-    else if (c == '1')
-        img.img = mlx_xpm_file_to_image(game->mlx, "textures/wall.xpm", &img.width, &img.height);
-    else if (c == 'E')
-        img.img = mlx_xpm_file_to_image(game->mlx, "textures/exit.xpm", &img.width, &img.height);
-    else if (c == 'P')
-        img.img = mlx_xpm_file_to_image(game->mlx, "textures/player.xpm", &img.width, &img.height);
-    else if (c == 'C')
-        img.img = mlx_xpm_file_to_image(game->mlx, "textures/collectable.xpm", &img.width, &img.height);
-    if (img.img)
-    {
-        mlx_put_image_to_window(game->mlx, game->mlx_win, img.img, x, y);
-        mlx_destroy_image(game->mlx, img.img);
-    }
-}
-
 void parse_map(t_game *game)
 {
     int i;
@@ -64,8 +41,14 @@ void init_game(char *path)
     game.map_width = map.cols * 32;
     game.map_height = map.rows * 32;
     game.mlx = mlx_init();
+    init_textures(&game);
     game.mlx_win = mlx_new_window(game.mlx, game.map_width, game.map_height, "So Long");
     parse_map(&game);
     mlx_hook(game.mlx_win, KeyPress, KeyPressMask, key_press, &game);
     mlx_loop(game.mlx);
+
+    // Free allocated memory
+    free_matrix(game.map);
+    destroy_textures(&game);
+    mlx_destroy_display(game.mlx);
 }

@@ -40,6 +40,16 @@ typedef struct s_map
     int cols;
 }t_map;
 
+typedef struct s_textures
+{
+    void *floor;
+    void *dot;
+    void *wall;
+    void *exit;
+    void *player;
+    void *collectable;
+}t_textures;
+
 typedef struct s_player
 {
     int x;
@@ -57,6 +67,7 @@ typedef struct s_game
     int c_counter;
     int f_counter;
     t_player player;
+    t_textures textures;
 } t_game;
 
 
@@ -86,4 +97,6 @@ int key_press(int keycode, t_game *game);
 void parse_map(t_game *game);
 t_game get_counts(char **str);
 void free_matrix(char **matrix);
+void init_textures(t_game *game);
+void destroy_textures(t_game *game);
 #endif

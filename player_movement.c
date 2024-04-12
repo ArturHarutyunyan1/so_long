@@ -19,7 +19,6 @@ void move(t_game *game, int new_x, int new_y)
             game->map[new_row][new_col] = 'P';
             game->player.x = new_x;
             game->player.y = new_y;
-            mlx_clear_window(game->mlx, game->mlx_win);
             parse_map(game);
         }
     }
