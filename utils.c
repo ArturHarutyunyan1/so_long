@@ -17,6 +17,7 @@ int get_size(char *path)
             flag = 0;
         else
             map_size++;
+        free(line);
     }
     close(fd);
     return (map_size);
@@ -58,7 +59,6 @@ t_map get_dimensions(char **str)
     t_map map;
 
     i = 0;
-    len = 0;
     map.rows = 0;
     map.cols = 0;
     while (str[i])
@@ -70,4 +70,42 @@ t_map get_dimensions(char **str)
         i++;
     }
     return (map);
+}
+
+t_game get_counts(char **str)
+{
+    int i;
+    int j;
+    t_game game;
+
+    i = 0;
+    game.c_counter = 0;
+    game.f_counter = 0;
+    while (str[i])
+    {
+        j = 0;
+        while (str[i][j])
+        {
+            if (str[i][j] == '0')
+                game.f_counter++;
+            else if (str[i][j] == 'C')
+                game.c_counter++;
+            j++;
+        }
+        i++;
+    }
+    return (game);
+}
+
+void free_matrix(char **matrix)
+{
+    int i;
+
+    i = 0;
+    while (matrix[i])
+    {
+        free(matrix[i]);
+        i++;
+    }
+    free(matrix);
 }

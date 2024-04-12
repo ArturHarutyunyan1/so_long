@@ -46,6 +46,7 @@ typedef struct s_player
     int y;
 }t_player;
 
+
 typedef struct s_game
 {
     void *mlx;
@@ -53,8 +54,11 @@ typedef struct s_game
     char **map;
     int map_width;
     int map_height;
+    int c_counter;
+    int f_counter;
     t_player player;
-}t_game;
+} t_game;
+
 
 char	*get_next_line(int fd);
 char	*ft_strchr(const char *str, int c);
@@ -76,9 +80,10 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t n);
 bool validate_map(char *path);
 void init_game(char *path);
 t_map get_dimensions(char **str);
-void draw(t_game *game,int x, int y, int c);
+void draw(t_game *game,int x, int y, char c);
 char **read_map(char *path);
 int key_press(int keycode, t_game *game);
 void parse_map(t_game *game);
-
+t_game get_counts(char **str);
+void free_matrix(char **matrix);
 #endif

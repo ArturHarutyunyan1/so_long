@@ -37,11 +37,9 @@ bool validate_map(char *path)
     exit = 0;
     player = 0;
     collectable = 0;
-    while (map[i])
-    {
+    while (map[i]) {
         j = 0;
-        while (map[i][j])
-        {
+        while (map[i][j]) {
             if (map[i][j] == 'E')
                 exit++;
             else if (map[i][j] == 'P')
@@ -52,6 +50,7 @@ bool validate_map(char *path)
         }
         i++;
     }
+    free_matrix(map);
     if (exit == 1 && player == 1 && collectable >= 1)
         return (true);
     return (false);

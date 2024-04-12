@@ -1,6 +1,6 @@
 #include "so_long.h"
 
-void draw(t_game *game,int x, int y, int c)
+void draw(t_game *game,int x, int y, char c)
 {
     t_data img;
 
@@ -16,7 +16,11 @@ void draw(t_game *game,int x, int y, int c)
         img.img = mlx_xpm_file_to_image(game->mlx, "textures/player.xpm", &img.width, &img.height);
     else if (c == 'C')
         img.img = mlx_xpm_file_to_image(game->mlx, "textures/collectable.xpm", &img.width, &img.height);
-    mlx_put_image_to_window(game->mlx, game->mlx_win, img.img, x, y);
+    if (img.img)
+    {
+        mlx_put_image_to_window(game->mlx, game->mlx_win, img.img, x, y);
+        mlx_destroy_image(game->mlx, img.img);
+    }
 }
 
 void parse_map(t_game *game)
