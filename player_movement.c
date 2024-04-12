@@ -1,5 +1,18 @@
 #include "so_long.h"
 
+int attempt_move(t_game *game, int new_x, int new_y)
+{
+    int success;
+
+    success = 0;
+    if (new_x >= 0 && new_x < game->map_width && new_y >= 0 && new_y < game->map_height)
+    {
+        if (game->map[new_y / 32][new_x / 32] != '1' && game->map[new_y / 32][new_x / 32] != 'E')
+            success = 1;
+    }
+    return (success);
+}
+
 void move(t_game *game, int new_x, int new_y)
 {
     int current_row;
@@ -22,12 +35,15 @@ void move(t_game *game, int new_x, int new_y)
             game->player.x = new_x;
             game->player.y = new_y;
             parse_map(game);
+            write(1, "Moves: ", 7);
+            ft_putnbr(game->moves++);
+            write(1, "\n", 1);
         }
     }
     if (game->collected == game->collectables)
     {
         if (game->map[new_y / 32][new_x / 32] == 'E')
-            exit(printf("You Win!\n"));
+            exit(write(1, "You Win!\n", 9));
     }
 }
 
@@ -35,31 +51,15 @@ int key_press(int keycode, t_game *game)
 {
     static int counter;
 
-//    counter = 0;
     if (keycode == KEY_ESC)
         exit_game(game);
     else if (keycode == KEY_W)
-    {
-        counter++;
         move(game, game->player.x, game->player.y - 32);
-    }
     else if (keycode == KEY_A)
-    {
-        counter++;
         move(game, game->player.x - 32, game->player.y);
-    }
     else if (keycode == KEY_S)
-    {
-        counter++;
         move(game, game->player.x, game->player.y + 32);
-    }
     else if (keycode == KEY_D)
-    {
-        counter++;
         move(game, game->player.x + 32, game->player.y);
-    }
-    write(1, "Moves: ", 7);
-    ft_putnbr(counter);
-    write(1, "\n", 1);
     return (0);
 }

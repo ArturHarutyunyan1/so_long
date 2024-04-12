@@ -42,6 +42,7 @@
         game.map_height = map.rows * 32;
         game.collectables = get_counts(game.map).collectables;
         game.collected = 0;
+        game.moves = 1;
         game.mlx = mlx_init();
         init_textures(&game);
         game.mlx_win = mlx_new_window(game.mlx, game.map_width, game.map_height, "So Long");

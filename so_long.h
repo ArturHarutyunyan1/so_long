@@ -53,6 +53,7 @@ typedef struct s_game
     int map_height;
     int collectables;
     int collected;
+    int moves;
     t_player player;
     t_textures textures;
 } t_game;
