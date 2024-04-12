@@ -73,5 +73,7 @@ bool check_format(char *path);
 char **read_map(char *path);
 size_t	ft_strlcpy(char *dest, const char *src, size_t n);
 bool validate_map(char *path);
+void init_game(char *path);
+t_map get_dimensions(char **str);
 
 #endif

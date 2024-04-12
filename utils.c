@@ -50,3 +50,24 @@ char **read_map(char *path)
     map[i] = NULL;
     return (map);
 }
+
+t_map get_dimensions(char **str)
+{
+    int i;
+    int len;
+    t_map map;
+
+    i = 0;
+    len = 0;
+    map.rows = 0;
+    map.cols = 0;
+    while (str[i])
+    {
+        len = ft_strlen(str[i]);
+        if (len > map.cols)
+            map.cols = len;
+        map.rows++;
+        i++;
+    }
+    return (map);
+}
