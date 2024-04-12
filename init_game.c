@@ -40,15 +40,14 @@ void init_game(char *path)
     map = get_dimensions(game.map);
     game.map_width = map.cols * 32;
     game.map_height = map.rows * 32;
+    game.collectables = get_counts(game.map).collectables;
+    game.collected = 0;
     game.mlx = mlx_init();
     init_textures(&game);
     game.mlx_win = mlx_new_window(game.mlx, game.map_width, game.map_height, "So Long");
     parse_map(&game);
     mlx_hook(game.mlx_win, KeyPress, KeyPressMask, key_press, &game);
     mlx_loop(game.mlx);
-
-    // Free allocated memory
     free_matrix(game.map);
     destroy_textures(&game);
-    mlx_destroy_display(game.mlx);
 }

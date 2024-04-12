@@ -1,8 +1,7 @@
 /* XPM */
-static char * pacdot_food_xpm[] = {
-"32 32 2 1",
-" 	c None",
-".	c #FFD67F",
+static char * black_xpm[] = {
+"32 32 1 1",
+" 	c #000000",
 "                                ",
 "                                ",
 "                                ",
@@ -17,11 +16,11 @@ static char * pacdot_food_xpm[] = {
 "                                ",
 "                                ",
 "                                ",
-"               ..               ",
-"              ....              ",
-"              ....              ",
-"              ....              ",
-"               ..               ",
+"                                ",
+"                                ",
+"                                ",
+"                                ",
+"                                ",
 "                                ",
 "                                ",
 "                                ",

@@ -43,7 +43,6 @@ typedef struct s_map
 typedef struct s_textures
 {
     void *floor;
-    void *dot;
     void *wall;
     void *exit;
     void *player;
@@ -56,7 +55,6 @@ typedef struct s_player
     int y;
 }t_player;
 
-
 typedef struct s_game
 {
     void *mlx;
@@ -64,8 +62,8 @@ typedef struct s_game
     char **map;
     int map_width;
     int map_height;
-    int c_counter;
-    int f_counter;
+    int collectables;
+    int collected;
     t_player player;
     t_textures textures;
 } t_game;

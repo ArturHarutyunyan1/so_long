@@ -11,9 +11,11 @@ void move(t_game *game, int new_x, int new_y)
     current_col = game->player.x / 32;
     if (new_x >= 0 && new_x < game->map_width && new_y >= 0 && new_y < game->map_height)
     {
-        if (game->map[new_y / 32][new_x / 32] != '1')
+        if (game->map[new_y / 32][new_x / 32] != '1' && game->map[new_y / 32][new_x / 32] != 'E')
         {
-            game->map[current_row][current_col] = '2';
+            if (game->map[new_y / 32][new_x / 32] == 'C')
+                game->collected++;
+            game->map[current_row][current_col] = '0';
             new_row = new_y / 32;
             new_col = new_x / 32;
             game->map[new_row][new_col] = 'P';
@@ -21,6 +23,11 @@ void move(t_game *game, int new_x, int new_y)
             game->player.y = new_y;
             parse_map(game);
         }
+    }
+    if (game->collected == game->collectables)
+    {
+        if (game->map[new_y / 32][new_x / 32] == 'E')
+            exit(printf("You Win!\n"));
     }
 }
 
@@ -34,4 +41,5 @@ int key_press(int keycode, t_game *game)
         move(game, game->player.x, game->player.y + 32);
     else if (keycode == KEY_D)
         move(game, game->player.x + 32, game->player.y);
+    return (0);
 }

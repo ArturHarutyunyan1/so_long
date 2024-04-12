@@ -79,21 +79,19 @@ t_game get_counts(char **str)
     t_game game;
 
     i = 0;
-    game.c_counter = 0;
-    game.f_counter = 0;
+    game.collectables = 0;
     while (str[i])
     {
         j = 0;
         while (str[i][j])
         {
-            if (str[i][j] == '0')
-                game.f_counter++;
-            else if (str[i][j] == 'C')
-                game.c_counter++;
+            if (str[i][j] == 'C')
+                game.collectables++;
             j++;
         }
         i++;
     }
+    printf("%d\n", game.collectables);
     return (game);
 }
 
