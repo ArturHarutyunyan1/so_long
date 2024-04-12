@@ -60,5 +60,6 @@ void init_game(char *path)
     game.mlx = mlx_init();
     game.mlx_win = mlx_new_window(game.mlx, game.map_width, game.map_height, "So Long");
     parse_map(&game);
+    mlx_hook(game.mlx_win, KeyPress, KeyPressMask, key_press, &game);
     mlx_loop(game.mlx);
 }

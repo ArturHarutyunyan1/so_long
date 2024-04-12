@@ -18,8 +18,9 @@
 # include <string.h>
 # include <fcntl.h>
 # include <stdbool.h>
-# include <mlx.h>
-# include <X11/keysym.h>
+#include <mlx.h>
+#include <X11/X.h>
+#include <X11/keysym.h>
 
 
 typedef struct s_data
@@ -75,5 +76,9 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t n);
 bool validate_map(char *path);
 void init_game(char *path);
 t_map get_dimensions(char **str);
+void draw(t_game *game,int x, int y, char c);
+char **read_map(char *path);
+int key_press(int keycode, t_game *game);
+void parse_map(t_game *game);
 
 #endif
