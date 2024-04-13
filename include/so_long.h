@@ -33,6 +33,7 @@
 # include <mlx.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
+# include <stdarg.h>
 
 typedef struct s_map
 {
@@ -53,6 +54,10 @@ typedef struct s_player
 {
 	int		x;
 	int		y;
+	int		exit_count;
+	int		player_count;
+	int		collectible_count;
+	int		forbidden_chars;
 }			t_player;
 
 typedef struct s_game
@@ -104,16 +109,15 @@ char			*get_next_line(int fd);
 ** Additional Utility Functions
 */
 int				get_size(char *path);
-void			ft_putchar(int c);
-void			ft_putnbr(int n);
 
 /*
 ** Game Related Functions
 */
 void			validation(int argc, char **argv);
-bool			check_format(char *path);
+void			handle_error_messages(t_game *game, char *path);
+void			check_format(char *path);
 char			**read_map(char *path);
-bool			validate_map(char *path);
+void			validate_map(char *path);
 void			init_game(char *path);
 t_map			get_dimensions(char **str);
 void			draw(t_game *game, int x, int y, char c);
@@ -124,5 +128,19 @@ void			free_matrix(char **matrix);
 void			init_textures(t_game *game);
 void			destroy_textures(t_game *game);
 int				exit_game(t_game *game);
+
+int				ft_printf(const char *str, ...);
+int				format_parser(va_list args, const char f);
+int				ft_putchar(int c);
+int				ft_putstr(const char *str);
+int				ft_hex_len(unsigned long long hex);
+int				ft_print_hex(unsigned long long hex, const char f);
+int				ft_putnbr(int nb);
+unsigned int	ft_putuint(unsigned int n);
+char			*ft_itoa(int n);
+void			ft_exit(char *str, t_game *game);
+
+void			ft_put_hex(unsigned long long hex, const char f);
+void			reverse(const char *str);
 
 #endif

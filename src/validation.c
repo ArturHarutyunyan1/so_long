@@ -15,91 +15,63 @@ void	validation(int argc, char **argv)
 {
 	if (argc == 2)
 	{
-		if (!check_format(argv[1]) || !validate_map(argv[1]))
-			exit(write(2, "Error\n", 6));
+		check_format(argv[1]);
+		validate_map(argv[1]);
 	}
 	else
-		exit(write(2, "Error\n", 6));
+		ft_exit("Error\nInvalid number of arguments", NULL);
 }
 
-bool	check_format(char *path)
+void	check_format(char *path)
 {
 	int	i;
 
 	i = 0;
 	while (path[i] != '.')
 		i++;
-	if (ft_isalnum(path[i - 1]) && path[i + 1] == 'b'
-		&& path[i + 2] == 'e' && path[i + 3] == 'r'
-		&& path[i + 4] == '\0')
-		return (true);
-	return (false);
+	if (!(ft_isalnum(path[i - 1]) && path[i + 1] == 'b'
+			&& path[i + 2] == 'e' && path[i + 3] == 'r'
+			&& path[i + 4] == '\0'))
+		ft_exit("Error\nInvalid format", NULL);
 }
 
-bool	is_rectangular_map(char **map)
+void	check_chars(t_game *game, char c)
+{
+	if (c == 'E')
+		game->player.exit_count++;
+	else if (c == 'P')
+		game->player.player_count++;
+	else if (c == 'C')
+		game->player.collectible_count++;
+	else if (c == '1' || c == '0')
+		return ;
+	else
+		ft_exit("Error\nInvalid characters\n", game);
+}
+
+void	validate_map(char *path)
 {
 	int		i;
-	size_t	length;
+	int		j;
+	t_game	game;
 
+	game.player.exit_count = 0;
+	game.player.player_count = 0;
+	game.player.collectible_count = 0;
 	i = 0;
-	length = ft_strlen(map[0]);
-	while (map[i])
+	game.map = read_map(path);
+	if (!game.map)
+		exit(2);
+	while (game.map[i])
 	{
-		if (ft_strlen(map[i]) != length)
-			return (false);
-		i++;
-	}
-	return (true);
-}
-
-bool	count_entities(char *line, int *exit, int *player, int *collectable)
-{
-	int	i;
-
-	i = 0;
-	while (line[i])
-	{
-		if (line[i] == 'E')
-			(*exit)++;
-		else if (line[i] == 'P')
-			(*player)++;
-		else if (line[i] == 'C')
-			(*collectable)++;
-		if (line[i] != '1' && line[i] != '0'
-			&& line[i] != 'E'
-			&& line[i] != 'P'
-			&& line[i] != 'C')
-			return (false);
-		i++;
-	}
-	return (true);
-}
-
-bool	validate_map(char *path)
-{
-	int		i;
-	int		exit;
-	int		player;
-	int		collectable;
-	char	**map;
-
-	i = 0;
-	exit = 0;
-	player = 0;
-	collectable = 0;
-	map = read_map(path);
-	if (!map)
-		return (false);
-	while (map[i])
-	{
-		if (!count_entities(map[i], &exit, &player, &collectable)
-			|| !is_rectangular_map(map))
+		j = 0;
+		while (game.map[i][j])
 		{
-			free_matrix(map);
-			return (false);
+			check_chars(&game, game.map[i][j]);
+			j++;
 		}
 		i++;
+		free_matrix(game.map);
+		handle_error_messages(&game, path);
 	}
-	free_matrix(map);
-	return (exit == 1 && player == 1 && collectable >= 1);
 }

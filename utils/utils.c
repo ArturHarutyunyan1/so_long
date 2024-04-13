@@ -27,7 +27,7 @@ int	get_size(char *path)
 		if (line == NULL)
 		{
 			if (map_size == 0)
-				exit(write(2, "Invalid map!\n", 13));
+				return (-1);
 			flag = 0;
 		}
 		else
@@ -51,10 +51,7 @@ char	**read_map(char *path)
 	fd = open(path, O_RDONLY);
 	map = (char **)malloc((size + 1) * sizeof(char *));
 	if (!map)
-	{
-		close(fd);
 		return (false);
-	}
 	while (i < size)
 	{
 		line = get_next_line(fd);
@@ -63,6 +60,7 @@ char	**read_map(char *path)
 		free(line);
 		i++;
 	}
+	close(fd);
 	map[i] = NULL;
 	return (map);
 }
@@ -114,7 +112,7 @@ void	free_matrix(char **matrix)
 	int	i;
 
 	i = 0;
-	while (matrix[i])
+	while (matrix[i] != NULL)
 	{
 		free(matrix[i]);
 		i++;

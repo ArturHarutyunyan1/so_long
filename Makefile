@@ -15,6 +15,11 @@ SRCS = $(SRC_DIR)/graphical_utils.c \
 	   $(UTIL_DIR)/ft_isdigit.c \
 	   $(UTIL_DIR)/ft_memmove.c \
 	   $(UTIL_DIR)/ft_memset.c \
+	   $(UTIL_DIR)/ft_print_hex.c \
+	   $(UTIL_DIR)/ft_printf.c \
+	   $(UTIL_DIR)/ft_printf_utils.c \
+	   $(UTIL_DIR)/ft_format_parser.c \
+	   $(UTIL_DIR)/ft_itoa.c \
 	   $(UTIL_DIR)/ft_strchr.c \
 	   $(UTIL_DIR)/ft_strdup.c \
 	   $(UTIL_DIR)/ft_strjoin.c \
