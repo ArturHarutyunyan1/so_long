@@ -16,10 +16,10 @@ void	validation(int argc, char **argv)
 	if (argc == 2)
 	{
 		if (!check_format(argv[1]) || !validate_map(argv[1]))
-			exit(write(2, "Invalid map!\n", 13));
+			exit(write(2, "Error\n", 6));
 	}
 	else
-		exit(write(2, "Invalid number of arguments!\n", 30));
+		exit(write(2, "Error\n", 6));
 }
 
 bool	check_format(char *path)

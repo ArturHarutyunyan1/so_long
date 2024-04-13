@@ -4,8 +4,6 @@ RM = rm -f
 CFLAGS = -Wall -Wextra -Werror
 SRC_DIR = src
 UTIL_DIR = utils
-MLX_FLAGS = -lmlx
-
 SRCS = $(SRC_DIR)/graphical_utils.c \
 	   $(SRC_DIR)/init_game.c \
 	   $(SRC_DIR)/main.c \
