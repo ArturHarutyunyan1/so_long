@@ -27,7 +27,8 @@ SRCS = $(SRC_DIR)/graphical_utils.c \
 	   $(UTIL_DIR)/ft_strlen.c \
 	   $(UTIL_DIR)/get_next_line.c \
 	   $(UTIL_DIR)/utils.c \
-	   $(UTIL_DIR)/utils1.c
+	   $(UTIL_DIR)/utils1.c \
+	   $(UTIL_DIR)/utils2.c
 
 OBJS = $(SRCS:.c=.o)
 $(NAME): $(OBJS)

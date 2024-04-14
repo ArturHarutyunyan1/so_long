@@ -116,6 +116,8 @@ int				get_size(char *path);
 void			validation(int argc, char **argv);
 void			handle_error_messages(t_game *game, char *path);
 void			check_format(char *path);
+bool            is_valid_path(t_game *game, int row, int col);
+bool            validate_path(t_game *game);
 char			**read_map(char *path);
 void			validate_map(char *path);
 void			init_game(char *path);
@@ -128,6 +130,10 @@ void			free_matrix(char **matrix);
 void			init_textures(t_game *game);
 void			destroy_textures(t_game *game);
 int				exit_game(t_game *game);
+
+/*
+ ** ft_printf
+*/
 
 int				ft_printf(const char *str, ...);
 int				format_parser(va_list args, const char f);

@@ -14,8 +14,8 @@
 void	ft_exit(char *str, t_game *game)
 {
 	ft_printf("Error\nWe've encountered some issues\n%s", str);
-	if (game != NULL && game->map != NULL)
-		free_matrix(game->map);
+	if (game->map[0])
+        free_matrix(game->map);
 	exit(1);
 }
 
@@ -35,6 +35,28 @@ bool	is_rectangular_map(char **map)
 	return (true);
 }
 
+int is_wall(t_game *game, int x, int y) {
+    return (x < 0 || y < 0 || x >= game->map_height || y >= game->map_width || game->map[x][y] == '1');
+}
+
+//void ft_walls(t_game *game)
+//{
+//    int i;
+//    int c;
+//    int len;
+//
+//    i = 0;
+//    len = 0;
+//    while (game->map[i])
+//    {
+//        c = 0;
+//        len = ft_strlen(game->map[i]);
+//        if (game->map[0][c] != '1' || game->map[len - 1][c] != '1')
+//            ft_exit("Error\nMap is not surrounded by walls\n");
+//        if (game->map[i][0] != '1' || game->map[1])
+//        i++;
+//    }
+//}
 void	handle_error_messages(t_game *game, char *path)
 {
 	if (game->player.exit_count == 0)
@@ -58,6 +80,6 @@ int	exit_game(t_game *game)
 	free_matrix(game->map);
 	destroy_textures(game);
 	mlx_destroy_display(game->mlx);
-	ft_exit("Error\nGame was closed successfully!\n", game);
-	exit(2);
+    ft_printf("Game was closed successfully!\n");
+    exit(2);
 }
