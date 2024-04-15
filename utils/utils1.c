@@ -14,56 +14,58 @@
 void	ft_exit(char *str, t_game *game)
 {
 	ft_printf("Error\nWe've encountered some issues\n%s", str);
-	if (game->map[0])
+	if (game != NULL && game->map[0])
 		free_matrix(game->map);
 	exit(1);
 }
 
 bool	is_rectangular_map(char **map)
 {
-    int i;
-    size_t len;
+	int		i;
+	size_t	len;
 
-    i = 0;
-    len = ft_strlen(map[0]);
-    while (map[i])
-    {
-        if (ft_strlen(map[i]) != len)
-            return (false);
-        i++;
-    }
-    return (true);
+	i = 0;
+	len = ft_strlen(map[0]);
+	while (map[i])
+	{
+		if (ft_strlen(map[i]) != len)
+			return (false);
+		i++;
+	}
+	return (true);
 }
 
-bool surrounded_by_walls(char **map)
+bool	surrounded_by_walls(char **map)
 {
-    int i;
-    int j;
-    int len;
+	int	i;
+	int	j;
+	int	len;
 
-    i = 0;
-    j = 0;
-    while (map[i][j])
-    {
-        if (map[i][j] != '1')
-            return (false);
-        j++;
-    }
-    i++;
-    len = 0;
-    while (map[i])
-    {
-        len = ft_strlen(map[i]);
-        if (map[i][0] != '1' || map[i][len - 1] != '1')
-            return (false);
-        i++;
-    }
-    return (true);
+	i = 0;
+	j = 0;
+	while (map[i][j])
+	{
+		if (map[i][j] != '1')
+			return (false);
+		j++;
+	}
+	i++;
+	len = 0;
+	while (map[i])
+	{
+		len = ft_strlen(map[i]);
+		if (map[i][0] != '1' || map[i][len - 1] != '1')
+			return (false);
+		i++;
+	}
+	return (true);
 }
 
 void	handle_error_messages(t_game *game, char *path)
 {
-	if (game->player.exit_count == 0)
+	if (get_size(path) == -1)
+		ft_exit("Error\nMap is empty\n", game);
+	else if (game->player.exit_count == 0)
 		ft_exit("Error\nNo exit was found\n", game);
 	else if (game->player.exit_count > 1)
 		ft_exit("Error\nMore than one exit\n", game);
@@ -75,8 +77,6 @@ void	handle_error_messages(t_game *game, char *path)
 		ft_exit("Error\nNo collectibles was found\n", game);
 	else if (!is_rectangular_map(game->map))
 		ft_exit("Error\nMap shape is not rectangular\n", game);
-	else if (get_size(path) == -1)
-		ft_exit("Error\nMap is empty\n", game);
 }
 
 int	exit_game(t_game *game)

@@ -26,8 +26,8 @@ void	validation(int argc, char **argv)
 		validate_map(argv[1]);
 		if (!validate_path(&game, argv[1]))
 			ft_exit("Error\nNo valid path\n", &game);
-        else if (!surrounded_by_walls(game.map))
-            ft_exit("Error\nMap is not surrounded by walls!\n", &game);
+		else if (!surrounded_by_walls(game.map))
+			ft_exit("Error\nMap is not surrounded by walls!\n", &game);
 	}
 	else
 		ft_exit("Error\nInvalid number of arguments", NULL);
@@ -43,7 +43,7 @@ void	check_format(char *path)
 	if (!(ft_isalnum(path[i - 1]) && path[i + 1] == 'b'
 			&& path[i + 2] == 'e' && path[i + 3] == 'r'
 			&& path[i + 4] == '\0'))
-		ft_exit("Error\nInvalid format", NULL);
+		ft_exit("Error\nInvalid format\n", NULL);
 }
 
 void	check_chars(t_game *game, char c)
