@@ -13,20 +13,19 @@
 
 void	validation(int argc, char **argv)
 {
-    t_game game;
-    t_map dimensions;
+	t_game	game;
+	t_map	dimensions;
 
 	if (argc == 2)
 	{
-        game.map = read_map(argv[1]);
-        dimensions = get_dimensions(game.map);
-        game.map_height = dimensions.rows;
-        game.map_width = dimensions.cols;
+		game.map = read_map(argv[1]);
+		dimensions = get_dimensions(game.map);
+		game.map_height = dimensions.rows;
+		game.map_width = dimensions.cols;
 		check_format(argv[1]);
 		validate_map(argv[1]);
-        if (!validate_path(&game, argv[1]))
-            ft_exit("Error\nNo valid path\n", &game);
-
+		if (!validate_path(&game, argv[1]))
+			ft_exit("Error\nNo valid path\n", &game);
 	}
 	else
 		ft_exit("Error\nInvalid number of arguments", NULL);
@@ -68,7 +67,7 @@ void	validate_map(char *path)
 	game.player.exit_count = 0;
 	game.player.player_count = 0;
 	game.player.collectible_count = 0;
-    game.player.forbidden_chars = 0;
+	game.player.forbidden_chars = 0;
 	i = 0;
 	game.map = read_map(path);
 	if (!game.map)
@@ -83,6 +82,6 @@ void	validate_map(char *path)
 		}
 		i++;
 	}
-    handle_error_messages(&game, path);
-    free_matrix(game.map);
+	handle_error_messages(&game, path);
+	free_matrix(game.map);
 }
