@@ -24,7 +24,7 @@ void	validation(int argc, char **argv)
         game.map_width = dimensions.cols;
 		check_format(argv[1]);
 		validate_map(argv[1]);
-        if (!validate_path(&game))
+        if (!validate_path(&game, argv[1]))
             ft_exit("Error\nNo valid path\n", &game);
 
 	}
