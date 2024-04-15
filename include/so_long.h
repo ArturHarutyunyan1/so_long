@@ -128,6 +128,7 @@ void			draw(t_game *game, int x, int y, char c);
 int				key_press(int keycode, t_game *game);
 void			parse_map(t_game *game);
 t_game			get_counts(char **str);
+char	*ft_strtrim(char const *s1, char const *set);
 void			free_matrix(char **matrix);
 void			init_textures(t_game *game);
 void			destroy_textures(t_game *game);

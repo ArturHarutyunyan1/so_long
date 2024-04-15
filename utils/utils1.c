@@ -21,18 +21,18 @@ void	ft_exit(char *str, t_game *game)
 
 bool	is_rectangular_map(char **map)
 {
-	int		i;
-	size_t	length;
+    int i;
+    size_t len;
 
-	i = 0;
-	length = ft_strlen(map[0]);
-	while (map[i])
-	{
-		if (ft_strlen(map[i]) != length)
-			return (false);
-		i++;
-	}
-	return (true);
+    i = 0;
+    len = ft_strlen(map[0]);
+    while (map[i])
+    {
+        if (ft_strlen(map[i]) != len)
+            return (false);
+        i++;
+    }
+    return (true);
 }
 
 bool surrounded_by_walls(char **map)

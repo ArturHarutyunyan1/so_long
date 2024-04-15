@@ -38,31 +38,32 @@ int	get_size(char *path)
 	return (map_size);
 }
 
-char	**read_map(char *path)
+char **read_map(char *path)
 {
-	int		i;
-	int		fd;
-	int		size;
-	char	*line;
-	char	**map;
+    int i;
+    int fd;
+    int size;
+    char *line;
+    char **map;
 
-	i = 0;
-	size = get_size(path);
-	fd = open(path, O_RDONLY);
-	map = (char **)malloc((size + 1) * sizeof(char *));
-	if (!map)
-		return (false);
-	while (i < size)
-	{
-		line = get_next_line(fd);
-		map[i] = malloc(ft_strlen(line) + 1);
-		ft_strlcpy(map[i], line, ft_strlen(line));
-		free(line);
-		i++;
-	}
-	close(fd);
-	map[i] = NULL;
-	return (map);
+    i = 0;
+    size = get_size(path);
+    fd = open(path, O_RDONLY);
+    map = (char **)malloc((size + 1) * sizeof(char *));
+    if (!map)
+        return NULL;
+    while (i < size)
+    {
+        line = get_next_line(fd);
+        line = ft_strtrim(line, "\n");
+        map[i] = malloc(ft_strlen(line) + 1);
+        ft_strlcpy(map[i], line, ft_strlen(line) + 1);
+        free(line);
+        i++;
+    }
+    close(fd);
+    map[i] = NULL;
+    return map;
 }
 
 t_map	get_dimensions(char **str)
