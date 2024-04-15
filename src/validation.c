@@ -26,6 +26,8 @@ void	validation(int argc, char **argv)
 		validate_map(argv[1]);
 		if (!validate_path(&game, argv[1]))
 			ft_exit("Error\nNo valid path\n", &game);
+        else if (!surrounded_by_walls(game.map))
+            ft_exit("Error\nMap is not surrounded by walls!\n", &game);
 	}
 	else
 		ft_exit("Error\nInvalid number of arguments", NULL);

@@ -35,32 +35,32 @@ bool	is_rectangular_map(char **map)
 	return (true);
 }
 
-int	is_wall(t_game *game, int x, int y)
+bool surrounded_by_walls(char **map)
 {
-	return (x < 0 || y < 0
-		|| x >= game->map_height
-		|| y >= game->map_width
-		|| game->map[x][y] == '1');
+    int i;
+    int j;
+    int len;
+
+    i = 0;
+    j = 0;
+    while (map[i][j])
+    {
+        if (map[i][j] != '1')
+            return (false);
+        j++;
+    }
+    i++;
+    len = 0;
+    while (map[i])
+    {
+        len = ft_strlen(map[i]);
+        if (map[i][0] != '1' || map[i][len - 1] != '1')
+            return (false);
+        i++;
+    }
+    return (true);
 }
 
-//void ft_walls(t_game *game)
-//{
-//    int i;
-//    int c;
-//    int len;
-//
-//    i = 0;
-//    len = 0;
-//    while (game->map[i])
-//    {
-//        c = 0;
-//        len = ft_strlen(game->map[i]);
-//        if (game->map[0][c] != '1' || game->map[len - 1][c] != '1')
-//            ft_exit("Error\nMap is not surrounded by walls\n");
-//        if (game->map[i][0] != '1' || game->map[1])
-//        i++;
-//    }
-//}
 void	handle_error_messages(t_game *game, char *path)
 {
 	if (game->player.exit_count == 0)

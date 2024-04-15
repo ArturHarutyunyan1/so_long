@@ -119,6 +119,7 @@ void			check_format(char *path);
 bool			is_valid_path(t_game *game, int row, int col);
 int				collectible_count(t_game *game, int row, int col);
 bool			validate_path(t_game *game, char *path);
+bool            surrounded_by_walls(char **map);
 char			**read_map(char *path);
 void			validate_map(char *path);
 void			init_game(char *path);
