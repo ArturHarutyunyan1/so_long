@@ -44,6 +44,7 @@ char	**read_map(char *path)
 	int		fd;
 	int		size;
 	char	*line;
+    char    *t_line;
 	char	**map;
 
 	i = 0;
@@ -55,10 +56,11 @@ char	**read_map(char *path)
 	while (i < size)
 	{
 		line = get_next_line(fd);
-		line = ft_strtrim(line, "\n");
-		map[i] = malloc(ft_strlen(line) + 1);
-		ft_strlcpy(map[i], line, ft_strlen(line) + 1);
+		t_line = ft_strtrim(line, "\n");
+		map[i] = malloc(ft_strlen(t_line) + 1);
+		ft_strlcpy(map[i], t_line, ft_strlen(t_line) + 1);
 		free(line);
+        free(t_line);
 		i++;
 	}
 	close(fd);

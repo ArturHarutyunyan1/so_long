@@ -115,7 +115,7 @@ int				get_size(char *path);
 ** Game Related Functions
 */
 void			validation(int argc, char **argv);
-void			handle_error_messages(t_game *game, char *path);
+void			handle_error_messages(t_game *game);
 void			check_format(char *path);
 bool			is_valid_path(t_game *game, int row, int col);
 int				collectible_count(t_game *game, int row, int col);

@@ -73,6 +73,7 @@ bool	validate_path(t_game *game, char *path)
 		i++;
 	}
 	count = collectible_count(game, game->player.x, game->player.y);
+    free_matrix(game->map);
 	game->map = read_map(path);
 	return (is_valid_path(game, game->player.x, game->player.y)
 		&& (count == game->player.collectible_count));
