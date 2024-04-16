@@ -54,6 +54,7 @@ void	init_game(char *path)
 	game.moves = 1;
 	game.x = 0;
 	game.y = 0;
+    game.player.on_exit = 0;
 	game.mlx = mlx_init();
 	init_textures(&game);
 	game.mlx_win = mlx_new_window(game.mlx, game.map_width,

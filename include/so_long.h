@@ -58,6 +58,7 @@ typedef struct s_player
 	int		player_count;
 	int		collectible_count;
 	int		forbidden_chars;
+    int     on_exit;
 }			t_player;
 
 typedef struct s_game
