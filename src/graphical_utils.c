@@ -59,9 +59,4 @@ void	draw(t_game *game, int x, int y, char c)
 	else if (c == 'C')
 		mlx_put_image_to_window(game->mlx, game->mlx_win,
 			game->textures.collectable, x, y);
-    else if (game->player.on_exit == 1)
-    {
-        mlx_put_image_to_window(game->mlx, game->mlx_win,
-                                game->textures.collectable, x, y);
-    }
 }
