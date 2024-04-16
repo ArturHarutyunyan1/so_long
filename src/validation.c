@@ -28,7 +28,7 @@ void	validation(int argc, char **argv)
 			ft_exit("Error\nNo valid path\n", &game);
 		else if (!surrounded_by_walls(game.map))
 			ft_exit("Error\nMap is not surrounded by walls!\n", &game);
-        free_matrix(game.map);
+		free_matrix(game.map);
 	}
 	else
 		ft_exit("Error\nInvalid number of arguments", NULL);
@@ -85,6 +85,6 @@ void	validate_map(char *path)
 		}
 		i++;
 	}
-	handle_error_messages(&game);
+	handle_error_messages(&game, path);
 	free_matrix(game.map);
 }

@@ -44,28 +44,26 @@ char	**read_map(char *path)
 	int		fd;
 	int		size;
 	char	*line;
-    char    *t_line;
-	char	**map;
+	t_game	game;
 
 	i = 0;
 	size = get_size(path);
 	fd = open(path, O_RDONLY);
-	map = (char **)malloc((size + 1) * sizeof(char *));
-	if (!map)
+	game.map = (char **)malloc((size + 1) * sizeof(char *));
+	if (!game.map)
 		return (NULL);
 	while (i < size)
 	{
 		line = get_next_line(fd);
-		t_line = ft_strtrim(line, "\n");
-		map[i] = malloc(ft_strlen(t_line) + 1);
-		ft_strlcpy(map[i], t_line, ft_strlen(t_line) + 1);
+		game.t_line = ft_strtrim(line, "\n");
+		game.map[i] = malloc(ft_strlen(game.t_line) + 1);
+		ft_strlcpy(game.map[i], game.t_line, ft_strlen(game.t_line) + 1);
 		free(line);
-        free(t_line);
+		free(game.t_line);
 		i++;
 	}
-	close(fd);
-	map[i] = NULL;
-	return (map);
+	game.map[i] = NULL;
+	return (game.map);
 }
 
 t_map	get_dimensions(char **str)

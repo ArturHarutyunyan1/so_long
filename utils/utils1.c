@@ -61,11 +61,11 @@ bool	surrounded_by_walls(char **map)
 	return (true);
 }
 
-void	handle_error_messages(t_game *game)
+void	handle_error_messages(t_game *game, char *path)
 {
-//	if (get_size(path) == -1)
-//		ft_exit("Error\nMap is empty\n", game);
-	if (game->player.exit_count == 0)
+	if (get_size(path) == -1)
+		ft_exit("Error\nMap is empty\n", game);
+	else if (game->player.exit_count == 0)
 		ft_exit("Error\nNo exit was found\n", game);
 	else if (game->player.exit_count > 1)
 		ft_exit("Error\nMore than one exit\n", game);

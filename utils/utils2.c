@@ -57,10 +57,10 @@ bool	validate_path(t_game *game, char *path)
 
 	i = 0;
 	game->player.collectible_count = get_counts(game->map).collectables;
-	while (i < game->map_height)
+	while (i++ < game->map_height)
 	{
 		j = 0;
-		while (j < game->map_width)
+		while (j++ < game->map_width)
 		{
 			if (game->map[i][j] == 'P')
 			{
@@ -68,12 +68,10 @@ bool	validate_path(t_game *game, char *path)
 				game->player.y = j;
 				break ;
 			}
-			j++;
 		}
-		i++;
 	}
 	count = collectible_count(game, game->player.x, game->player.y);
-    free_matrix(game->map);
+	free_matrix(game->map);
 	game->map = read_map(path);
 	return (is_valid_path(game, game->player.x, game->player.y)
 		&& (count == game->player.collectible_count));

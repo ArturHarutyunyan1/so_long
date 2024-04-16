@@ -67,7 +67,7 @@ void	move(t_game *game, int new_x, int new_y)
 				return ;
 			}
 			else if (game->collected == game->collectables)
-                exit(ft_printf("You win!!!\n"));
+				exit(ft_printf("You win!!!\n"));
 		}
 		do_move(game, new_x, new_y);
 	}

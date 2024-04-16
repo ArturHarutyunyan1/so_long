@@ -66,6 +66,7 @@ typedef struct s_game
 	void		*mlx;
 	void		*mlx_win;
 	char		**map;
+	char		*t_line;
 	int			map_width;
 	int			map_height;
 	int			collectables;
@@ -115,7 +116,7 @@ int				get_size(char *path);
 ** Game Related Functions
 */
 void			validation(int argc, char **argv);
-void			handle_error_messages(t_game *game);
+void			handle_error_messages(t_game *game, char *path);
 void			check_format(char *path);
 bool			is_valid_path(t_game *game, int row, int col);
 int				collectible_count(t_game *game, int row, int col);
