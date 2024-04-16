@@ -39,8 +39,6 @@ void	do_move(t_game *game, int new_x, int new_y)
 	int	y;
 
 	moved = 0;
-	x = 0;
-	y = 0;
 	if (game->player.x != new_x || game->player.y != new_y)
 		moved = 1;
 	x = game->player.x;
@@ -69,7 +67,7 @@ void	move(t_game *game, int new_x, int new_y)
 				return ;
 			}
 			else if (game->collected == game->collectables)
-				exit_game(game);
+                exit(ft_printf("You win!!!\n"));
 		}
 		do_move(game, new_x, new_y);
 	}
