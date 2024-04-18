@@ -13,6 +13,7 @@ SRCS = $(SRC_DIR)/graphical_utils.c \
 	   $(UTIL_DIR)/ft_isalnum.c \
 	   $(UTIL_DIR)/ft_isalpha.c \
 	   $(UTIL_DIR)/ft_isdigit.c \
+	   $(UTIL_DIR)/ft_isspace.c \
 	   $(UTIL_DIR)/ft_memmove.c \
 	   $(UTIL_DIR)/ft_memset.c \
 	   $(UTIL_DIR)/ft_print_hex.c \

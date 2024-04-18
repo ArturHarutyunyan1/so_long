@@ -101,6 +101,8 @@ void			*ft_memmove(void *dest, const void *src, size_t n);
 int				ft_isalnum(int c);
 int				ft_isalpha(int c);
 int				ft_isdigit(int c);
+int ft_isspace(int c);
+int contains_only_whitespace(const char *str);
 
 /*
 ** I/O Functions
