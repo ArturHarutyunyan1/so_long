@@ -55,7 +55,7 @@ char	**read_map(char *path)
 	while (i < size)
 	{
 		line = get_next_line(fd);
-		game.t_line = ft_strtrim(line, "\n");
+		game.t_line = ft_strtrim(line, "\n\t ");
 		game.map[i] = malloc(ft_strlen(game.t_line) + 1);
 		ft_strlcpy(game.map[i], game.t_line, ft_strlen(game.t_line) + 1);
 		free(line);
