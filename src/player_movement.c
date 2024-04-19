@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   player_movement.c                                  :+:      :+:    :+:   */
@@ -8,9 +8,9 @@
 /*   Created: 2024/04/13 01:15:34 by arturhar          #+#    #+#             */
 /*   Updated: 2024/04/18 10:17:56 by arturhar         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
-
+/* ************************************************************************** */
 #include "../include/so_long.h"
+
 static void	update_state(t_game *game, int new_x, int new_y)
 {
 	int	current_row;
@@ -67,10 +67,10 @@ void	move(t_game *game, int new_x, int new_y)
 				return ;
 			}
 			else if (game->collected == game->collectables)
-            {
-                     ft_printf("You win!!!\n");
-                     exit(0);
-            }
+			{
+				ft_printf("You win!!!\n");
+				exit(0);
+			}
 		}
 		do_move(game, new_x, new_y);
 	}

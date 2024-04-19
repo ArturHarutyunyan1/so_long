@@ -87,12 +87,13 @@ bool	validate_path(t_game *game, char *path)
 		&& (count == game->player.collectible_count));
 }
 
-int contains_only_whitespace(const char *str)
+int	contains_only_whitespace(const char *str)
 {
-    while (*str) {
-        if (!ft_isspace((unsigned char)*str))
-            return 0;
-        str++;
-    }
-    return 1;
+	while (*str)
+	{
+		if (!ft_isspace((unsigned char)*str))
+			return (0);
+		str++;
+	}
+	return (1);
 }

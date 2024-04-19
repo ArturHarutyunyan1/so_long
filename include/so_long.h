@@ -101,8 +101,8 @@ void			*ft_memmove(void *dest, const void *src, size_t n);
 int				ft_isalnum(int c);
 int				ft_isalpha(int c);
 int				ft_isdigit(int c);
-int ft_isspace(int c);
-int contains_only_whitespace(const char *str);
+int				ft_isspace(int c);
+int				contains_only_whitespace(const char *str);
 
 /*
 ** I/O Functions
@@ -134,6 +134,7 @@ void			parse_map(t_game *game);
 t_game			get_counts(char **str);
 char			*ft_strtrim(char const *s1, char const *set);
 void			free_matrix(char **matrix);
+char			**trim_map(t_game *game, int size);
 void			init_textures(t_game *game);
 void			destroy_textures(t_game *game);
 int				exit_game(t_game *game);
