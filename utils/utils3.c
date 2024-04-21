@@ -6,33 +6,56 @@
 /*   By: arturhar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 01:29:34 by arturhar          #+#    #+#             */
-/*   Updated: 2024/04/20 01:29:35 by arturhar         ###   ########.fr       */
+/*   Updated: 2024/04/21 05:27:14 by arturhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/so_long.h"
+
+int	get_i_pos(t_game *game, int size)
+{
+	int	i;
+
+	i = 0;
+	while (i < size && contains_only_whitespace(game->map[i]))
+		i++;
+	return (i);
+}
+
+int	get_j_pos(t_game *game, int size)
+{
+	int	j;
+
+	j = get_i_pos(game, size);
+	while (j < size && !contains_only_whitespace(game->map[j]))
+		j++;
+	return (j);
+}
 
 char	**trim_map(t_game *game, int size)
 {
 	int		i;
 	int		j;
-	char	**trimmed_map;
+	int		k;
+	int		len;
+	t_map	map;
 
-	i = 0;
-	j = 0;
-	while (i < size && contains_only_whitespace(game->map[i]))
-		i++;
-	trimmed_map = malloc((size + 1) * sizeof(char *));
-	if (!trimmed_map)
+	map = get_dimensions(game->map);
+	i = get_i_pos(game, size);
+	j = get_j_pos(game, size);
+	k = 0;
+	len = j - i;
+	if (map.rows > j - i)
+		ft_exit("Error\nMap has empty lines\n", game);
+	game->trim = malloc((len + 1) * sizeof(char *));
+	if (!game->trim)
 		return (NULL);
-	while (i < size)
+	while (i < j)
 	{
-		trimmed_map[j] = malloc(ft_strlen(game->map[i]) + 1);
-		ft_strlcpy(trimmed_map[j], game->map[i], ft_strlen(game->map[i]) + 1);
-		if (contains_only_whitespace(game->map[i]))
-			break ;
+		game->trim[k] = malloc(ft_strlen(game->map[i]) + 1);
+		ft_strlcpy(game->trim[k], game->map[i], ft_strlen(game->map[i]) + 1);
 		i++;
-		j++;
+		k++;
 	}
-	trimmed_map[j] = NULL;
-	return (trimmed_map);
+	game->trim[len] = NULL;
+	return (game->trim);
 }

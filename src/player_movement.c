@@ -69,6 +69,8 @@ void	move(t_game *game, int new_x, int new_y)
 			else if (game->collected == game->collectables)
 			{
 				ft_printf("You win!!!\n");
+				free_matrix(game->map);
+				destroy_textures(game);
 				exit(0);
 			}
 		}

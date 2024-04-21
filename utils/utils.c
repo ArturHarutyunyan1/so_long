@@ -79,9 +79,12 @@ t_map	get_dimensions(char **str)
 	while (str[i])
 	{
 		len = ft_strlen(str[i]);
-		if (len > map.cols)
-			map.cols = len;
-		map.rows++;
+		if (len != 0)
+		{
+			if (len > map.cols)
+				map.cols = len;
+			map.rows++;
+		}
 		i++;
 	}
 	return (map);

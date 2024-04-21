@@ -91,7 +91,7 @@ int	contains_only_whitespace(const char *str)
 {
 	while (*str)
 	{
-		if (!ft_isspace((unsigned char)*str))
+		if (!ft_isspace((char)*str))
 			return (0);
 		str++;
 	}
