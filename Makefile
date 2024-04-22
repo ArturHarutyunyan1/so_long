@@ -38,7 +38,7 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS)  -o $(NAME) -lmlx -lXext -lX11
 all: $(NAME)
 clean:
-	$(RM) $(NAME) $(OBJS)
+	$(RM) $(OBJS)
 fclean: clean
 	$(RM) $(NAME)
 re: fclean all
