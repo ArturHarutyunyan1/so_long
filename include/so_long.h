@@ -66,7 +66,7 @@ typedef struct s_game
 	void		*mlx;
 	void		*mlx_win;
 	char		**map;
-    char **trim;
+	char		**trim;
 	char		*t_line;
 	int			map_width;
 	int			map_height;

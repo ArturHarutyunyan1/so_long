@@ -36,17 +36,15 @@ char	**trim_map(t_game *game, int size)
 	int		i;
 	int		j;
 	int		k;
-	int		len;
 	t_map	map;
 
 	map = get_dimensions(game->map);
 	i = get_i_pos(game, size);
 	j = get_j_pos(game, size);
 	k = 0;
-	len = j - i;
 	if (map.rows > j - i)
 		ft_exit("Error\nMap has empty lines\n", game);
-	game->trim = malloc((len + 1) * sizeof(char *));
+	game->trim = malloc((j - i + 1) * sizeof(char *));
 	if (!game->trim)
 		return (NULL);
 	while (i < j)
@@ -56,7 +54,7 @@ char	**trim_map(t_game *game, int size)
 		i++;
 		k++;
 	}
-    free_matrix(game->map);
-	game->trim[len] = NULL;
+	free_matrix(game->map);
+	game->trim[k] = NULL;
 	return (game->trim);
 }
