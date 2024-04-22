@@ -56,6 +56,7 @@ char	**trim_map(t_game *game, int size)
 		i++;
 		k++;
 	}
+    free_matrix(game->map);
 	game->trim[len] = NULL;
 	return (game->trim);
 }
