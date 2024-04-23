@@ -1,7 +1,7 @@
 NAME = so_long
 CC = cc
 RM = rm -f
-#CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 SRC_DIR = src
 UTIL_DIR = utils
 SRCS = $(SRC_DIR)/graphical_utils.c \
