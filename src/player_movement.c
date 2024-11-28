@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   player_movement.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arturhar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: arturhar <arturhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 01:15:34 by arturhar          #+#    #+#             */
-/*   Updated: 2024/04/18 10:17:56 by arturhar         ###   ########.fr       */
+/*   Updated: 2024/11/26 21:21:29 by arturhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../include/so_long.h"
 
 static void	update_state(t_game *game, int new_x, int new_y)
@@ -83,12 +84,24 @@ int	key_press(int keycode, t_game *game)
 	if (keycode == KEY_ESC)
 		exit_game(game);
 	else if (keycode == KEY_W)
+	{
+		game->player.direction = "up";
 		move(game, game->player.x, game->player.y - 32);
+	}
 	else if (keycode == KEY_A)
+	{
+		game->player.direction = "left";
 		move(game, game->player.x - 32, game->player.y);
+	}
 	else if (keycode == KEY_S)
+	{
+		game->player.direction = "down";
 		move(game, game->player.x, game->player.y + 32);
+	}
 	else if (keycode == KEY_D)
+	{
+		game->player.direction = "right";
 		move(game, game->player.x + 32, game->player.y);
+	}
 	return (0);
 }

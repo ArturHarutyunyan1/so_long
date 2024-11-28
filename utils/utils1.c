@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arturhar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: arturhar <arturhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 01:27:56 by arturhar          #+#    #+#             */
-/*   Updated: 2024/04/13 01:27:57 by arturhar         ###   ########.fr       */
+/*   Updated: 2024/11/24 22:49:00 by arturhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../include/so_long.h"
 
 void	ft_exit(char *str, t_game *game)
@@ -83,7 +84,7 @@ int	exit_game(t_game *game)
 {
 	free_matrix(game->map);
 	destroy_textures(game);
-	mlx_destroy_display(game->mlx);
+	// mlx_destroy_display(game->mlx);
 	ft_printf("Game was closed successfully!\n");
 	exit(0);
 }

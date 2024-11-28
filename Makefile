@@ -1,9 +1,10 @@
 NAME = so_long
 CC = cc
 RM = rm -f
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -arch x86_64
 SRC_DIR = src
 UTIL_DIR = utils
+MLX_DIR = mlx
 SRCS = $(SRC_DIR)/graphical_utils.c \
 	   $(SRC_DIR)/init_game.c \
 	   $(SRC_DIR)/main.c \
@@ -35,7 +36,7 @@ SRCS = $(SRC_DIR)/graphical_utils.c \
 
 OBJS = $(SRCS:.c=.o)
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS)  -o $(NAME) -lmlx -lXext -lX11
+	$(CC) $(CFLAGS) $(OBJS)  -o $(NAME) -L$(MLX_DIR) -Lmlx -lmlx -framework OpenGL -framework AppKit  -o $(NAME)
 all: $(NAME)
 clean:
 	$(RM) $(OBJS)

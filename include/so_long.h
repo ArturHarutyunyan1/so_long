@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arturhar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: arturhar <arturhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 00:59:00 by arturhar          #+#    #+#             */
-/*   Updated: 2024/04/13 00:59:24 by arturhar         ###   ########.fr       */
+/*   Updated: 2024/11/26 21:21:21 by arturhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
@@ -16,11 +17,11 @@
 #  define BUFFER_SIZE 1024
 # endif
 
-# define KEY_W XK_w
-# define KEY_A XK_a
-# define KEY_S XK_s
-# define KEY_D XK_d
-# define KEY_ESC XK_Escape
+# define KEY_W 13
+# define KEY_A 0
+# define KEY_S 1
+# define KEY_D 2
+# define KEY_ESC 53
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -31,8 +32,6 @@
 # include <fcntl.h>
 # include <stdbool.h>
 # include <mlx.h>
-# include <X11/X.h>
-# include <X11/keysym.h>
 # include <stdarg.h>
 
 typedef struct s_map
@@ -47,7 +46,15 @@ typedef struct s_textures
 	void		*wall;
 	void		*exit;
 	void		*player;
+	void		*semi;
+	void		*closed;
 	void		*collectable;
+	void		*up;
+	void		*semi_up;
+	void		*down;
+	void		*semi_down;
+	void		*left;
+	void		*semi_left;
 }			t_textures;
 
 typedef struct s_player
@@ -59,6 +66,7 @@ typedef struct s_player
 	int		collectible_count;
 	int		forbidden_chars;
 	int		on_exit;
+	char 	*direction;
 }			t_player;
 
 typedef struct s_game
@@ -139,6 +147,7 @@ char			**trim_map(t_game *game, int size);
 void			init_textures(t_game *game);
 void			destroy_textures(t_game *game);
 int				exit_game(t_game *game);
+void *get_sprite(t_game *game);
 
 /*
  ** ft_printf
