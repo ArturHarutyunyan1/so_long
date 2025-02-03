@@ -55,6 +55,7 @@ typedef struct s_textures
 	void		*semi_down;
 	void		*left;
 	void		*semi_left;
+	void		*enemy;
 }			t_textures;
 
 typedef struct s_player

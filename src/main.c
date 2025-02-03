@@ -11,8 +11,15 @@
 /* ************************************************************************** */
 #include "../include/so_long.h"
 
-int	main(int argc, char **argv)
+void check_leaks(void)
 {
-	validation(argc, argv);
-	init_game(argv[1]);
+    system("leaks so_long");
+}
+
+int main(int argc, char **argv)
+{
+    atexit(check_leaks);
+    validation(argc, argv);
+    init_game(argv[1]);
+    return (0);
 }

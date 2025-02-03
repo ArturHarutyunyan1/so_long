@@ -38,9 +38,10 @@ void parse_map(t_game *game)
         game->y += 32;
         i++;
     }
-    // char *moves_str = ft_itoa(game->moves);
-    // mlx_string_put(game->mlx, game->mlx_win, 50, 10, 0xFFFFFF, moves_str);
-    // free(moves_str);
+    char *moves_str = ft_itoa(game->moves);
+    mlx_string_put(game->mlx, game->mlx_win, 0, 10, 0xFFFFFF, "Moves");
+    mlx_string_put(game->mlx, game->mlx_win, 50, 10, 0xFFFFFF, moves_str);
+    free(moves_str);
 }
 
 
@@ -62,7 +63,6 @@ int game_loop(t_game *game)
 
     return (0);
 }
-
 
 
 void	init_game(char *path)

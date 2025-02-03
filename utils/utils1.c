@@ -82,18 +82,8 @@ void	handle_error_messages(t_game *game, char *path)
 
 int exit_game(t_game *game)
 {
-    if (game->map)
-        free_matrix(game->map);
-    destroy_textures(game);
-    if (game->mlx_win) {
-        game->mlx_win = NULL;
-    }
-    if (game->mlx) {
-        free(game->mlx);
-        game->mlx = NULL;
-    }
-
-    free(game);
-    ft_printf("Game was closed successfully!\n");
-    exit(0);
+	ft_printf("Game was closed successfully\n");
+	free_matrix(game->map);
+	destroy_textures(game);
+	exit(0);
 }

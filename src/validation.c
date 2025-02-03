@@ -55,7 +55,7 @@ void	check_chars(t_game *game, char c)
 		game->player.player_count++;
 	else if (c == 'C')
 		game->player.collectible_count++;
-	else if (c == '1' || c == '0')
+	else if (c == '1' || c == '0' || c == 'G')
 		return ;
 	else
 		ft_exit("Error\nInvalid characters\n", game);

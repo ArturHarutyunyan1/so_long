@@ -43,6 +43,8 @@ void	init_textures(t_game *game)
 			"textures/left.xpm", &len, &len);
 	game->textures.semi_left = mlx_xpm_file_to_image(game->mlx,
 			"textures/semi-left.xpm", &len, &len);
+	game->textures.enemy = mlx_xpm_file_to_image(game->mlx,
+			"textures/enemy.xpm", &len, &len);
 }
 
 void destroy_textures(t_game *game)
@@ -71,6 +73,8 @@ void destroy_textures(t_game *game)
         mlx_destroy_image(game->mlx, game->textures.semi_up);
     if (game->textures.up)
         mlx_destroy_image(game->mlx, game->textures.up);
+	if (game->textures.enemy)
+        mlx_destroy_image(game->mlx, game->textures.enemy);
 }
 
 
@@ -146,4 +150,7 @@ void	draw(t_game *game, int x, int y, char c)
 	else if (c == 'C')
 		mlx_put_image_to_window(game->mlx, game->mlx_win,
 			game->textures.collectable, x, y);
+	else if (c == 'G')
+		mlx_put_image_to_window(game->mlx, game->mlx_win,
+			game->textures.enemy, x, y);
 }

@@ -17,6 +17,7 @@ bool	is_valid_path(t_game *game, int row, int col)
 		|| row >= game->map_height
 		|| col >= game->map_width
 		|| game->map[row][col] == '1'
+		|| game->map[row][col] == 'G'
 		|| game->map[row][col] == 'v')
 		return (false);
 	if (game->map[row][col] == 'E')

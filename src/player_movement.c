@@ -31,6 +31,7 @@ static void	update_state(t_game *game, int new_x, int new_y)
 	game->player.y = new_y;
 	parse_map(game);
 	ft_printf("Moves: %d\n", game->moves++);
+	
 }
 
 void	do_move(t_game *game, int new_x, int new_y)
@@ -74,6 +75,13 @@ void	move(t_game *game, int new_x, int new_y)
 				destroy_textures(game);
 				exit(0);
 			}
+		}
+		else if (game->map[new_y / 32][new_x / 32] == 'G')
+		{
+			ft_printf("You Lose :(\n");
+			free_matrix(game->map);
+			destroy_textures(game);
+			exit(0);
 		}
 		do_move(game, new_x, new_y);
 	}
