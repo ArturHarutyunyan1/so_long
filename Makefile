@@ -33,7 +33,8 @@ SRCS = $(SRC_DIR)/graphical_utils.c \
 	   $(UTIL_DIR)/utils2.c \
 	   $(UTIL_DIR)/utils3.c \
 	   $(UTIL_DIR)/ft_strtrim.c \
-	   $(UTIL_DIR)/ft_strcmp.c
+	   $(UTIL_DIR)/ft_strcmp.c \
+	   $(UTIL_DIR)/utils4.c 
 
 OBJS = $(SRCS:.c=.o)
 $(NAME): $(OBJS)

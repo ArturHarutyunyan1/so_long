@@ -6,7 +6,7 @@
 /*   By: arturhar <arturhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 00:59:00 by arturhar          #+#    #+#             */
-/*   Updated: 2025/02/03 15:20:38 by arturhar         ###   ########.fr       */
+/*   Updated: 2025/02/03 17:34:34 by arturhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ typedef struct s_player
 	int		collectible_count;
 	int		forbidden_chars;
 	int		on_exit;
-	char 	*direction;
+	char	*direction;
 }			t_player;
 
 typedef struct s_game
@@ -148,8 +148,13 @@ char			**trim_map(t_game *game, int size);
 void			init_textures(t_game *game);
 void			destroy_textures(t_game *game);
 int				exit_game(t_game *game);
-void *get_sprite(t_game *game);
-int	ft_strcmp(const char *str1, const char *str2);
+void			*get_sprite(t_game *game);
+int				ft_strcmp(const char *str1, const char *str2);
+void			ppart2(t_game *game);
+void			part2(t_game *game);
+int				get_sprite_index(void);
+void			*get_direction_texture(t_game *game, const char *direction);
+void			setup_game(t_game *game, char *path);
 
 /*
  ** ft_printf

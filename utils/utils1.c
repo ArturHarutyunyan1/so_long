@@ -6,7 +6,7 @@
 /*   By: arturhar <arturhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 01:27:56 by arturhar          #+#    #+#             */
-/*   Updated: 2025/02/03 15:34:50 by arturhar         ###   ########.fr       */
+/*   Updated: 2025/02/03 17:31:05 by arturhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	handle_error_messages(t_game *game, char *path)
 		ft_exit("Error\nMap shape is not rectangular\n", game);
 }
 
-int exit_game(t_game *game)
+int	exit_game(t_game *game)
 {
 	ft_printf("Game was closed successfully\n");
 	free_matrix(game->map);

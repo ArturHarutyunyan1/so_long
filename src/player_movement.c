@@ -6,7 +6,7 @@
 /*   By: arturhar <arturhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 01:15:34 by arturhar          #+#    #+#             */
-/*   Updated: 2024/11/26 21:21:29 by arturhar         ###   ########.fr       */
+/*   Updated: 2025/02/03 17:28:08 by arturhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static void	update_state(t_game *game, int new_x, int new_y)
 	game->player.y = new_y;
 	parse_map(game);
 	ft_printf("Moves: %d\n", game->moves++);
-	
 }
 
 void	do_move(t_game *game, int new_x, int new_y)
@@ -71,17 +70,13 @@ void	move(t_game *game, int new_x, int new_y)
 			else if (game->collected == game->collectables)
 			{
 				ft_printf("You win!!!\n");
-				free_matrix(game->map);
-				destroy_textures(game);
-				exit(0);
+				exit_game(game);
 			}
 		}
 		else if (game->map[new_y / 32][new_x / 32] == 'G')
 		{
 			ft_printf("You Lose :(\n");
-			free_matrix(game->map);
-			destroy_textures(game);
-			exit(0);
+			exit_game(game);
 		}
 		do_move(game, new_x, new_y);
 	}
