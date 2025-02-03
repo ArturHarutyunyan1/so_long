@@ -6,7 +6,7 @@
 /*   By: arturhar <arturhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 00:42:05 by arturhar          #+#    #+#             */
-/*   Updated: 2024/11/26 21:24:22 by arturhar         ###   ########.fr       */
+/*   Updated: 2025/02/03 15:30:15 by arturhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void parse_map(t_game *game)
             {
                 game->player.x = game->x;
                 game->player.y = game->y;
-                // Use animated sprite for player
                 draw(game, game->player.x, game->player.y, 'P');
             }
             else
@@ -39,8 +38,9 @@ void parse_map(t_game *game)
         game->y += 32;
         i++;
     }
-	mlx_string_put(game->mlx, game->mlx_win, 0, 10, 0xFFFFFF, "Moves: ");
-	mlx_string_put(game->mlx, game->mlx_win, 50, 10, 0xFFFFFF, ft_itoa(game->moves));
+    // char *moves_str = ft_itoa(game->moves);
+    // mlx_string_put(game->mlx, game->mlx_win, 50, 10, 0xFFFFFF, moves_str);
+    // free(moves_str);
 }
 
 
@@ -49,19 +49,16 @@ int game_loop(t_game *game)
     
     static int frame_counter = 0;
     
-    mlx_clear_window(game->mlx, game->mlx_win); // Clear the window before redrawing
-    
-    // Increment the frame counter
+    mlx_clear_window(game->mlx, game->mlx_win);
     frame_counter++;
-
-    // Update animation every few frames (e.g., every 10 frames)
+    
     if (frame_counter >= 10)
     {
-        frame_counter = 0; // Reset counter
-        get_sprite(game);  // Update the player's sprite
+        frame_counter = 0;
+        get_sprite(game);
     }
 
-    parse_map(game); // Redraw the entire map, including the player
+    parse_map(game);
 
     return (0);
 }

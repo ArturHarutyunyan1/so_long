@@ -6,7 +6,7 @@
 /*   By: arturhar <arturhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 01:57:10 by arturhar          #+#    #+#             */
-/*   Updated: 2024/11/28 13:41:57 by arturhar         ###   ########.fr       */
+/*   Updated: 2025/02/03 15:31:59 by arturhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,34 @@ void	init_textures(t_game *game)
 			"textures/semi-left.xpm", &len, &len);
 }
 
-void	destroy_textures(t_game *game)
+void destroy_textures(t_game *game)
 {
-	if (game->textures.floor)
-		mlx_destroy_image(game->mlx, game->textures.floor);
-	else if (game->textures.wall)
-		mlx_destroy_image(game->mlx, game->textures.wall);
-	else if (game->textures.exit)
-		mlx_destroy_image(game->mlx, game->textures.exit);
-	else if (game->textures.player)
-		mlx_destroy_image(game->mlx, game->textures.player);
-	else if (game->textures.collectable)
-		mlx_destroy_image(game->mlx, game->textures.collectable);
+    if (game->textures.floor)
+        mlx_destroy_image(game->mlx, game->textures.floor);
+    if (game->textures.wall)
+        mlx_destroy_image(game->mlx, game->textures.wall);
+    if (game->textures.exit)
+        mlx_destroy_image(game->mlx, game->textures.exit);
+    if (game->textures.player)
+        mlx_destroy_image(game->mlx, game->textures.player);
+    if (game->textures.collectable)
+        mlx_destroy_image(game->mlx, game->textures.collectable);
+    if (game->textures.down)
+        mlx_destroy_image(game->mlx, game->textures.down);
+    if (game->textures.left)
+        mlx_destroy_image(game->mlx, game->textures.left);
+    if (game->textures.semi)
+        mlx_destroy_image(game->mlx, game->textures.semi);
+    if (game->textures.semi_down)
+        mlx_destroy_image(game->mlx, game->textures.semi_down);
+    if (game->textures.semi_left)
+        mlx_destroy_image(game->mlx, game->textures.semi_left);
+    if (game->textures.semi_up)
+        mlx_destroy_image(game->mlx, game->textures.semi_up);
+    if (game->textures.up)
+        mlx_destroy_image(game->mlx, game->textures.up);
 }
+
 
 void *get_sprite(t_game *game)
 {
@@ -66,48 +81,48 @@ void *get_sprite(t_game *game)
 	i++;
 	if (i <= 5)
 	{
-		if (strcmp(game->player.direction, "right") == 0)
+		if (ft_strcmp(game->player.direction, "right") == 0)
 			return (game->textures.player);
-		if (strcmp(game->player.direction, "up") == 0)
+		if (ft_strcmp(game->player.direction, "up") == 0)
 			return (game->textures.up);
-		if (strcmp(game->player.direction, "down") == 0)
+		if (ft_strcmp(game->player.direction, "down") == 0)
 			return (game->textures.down);
-		if (strcmp(game->player.direction, "left") == 0)
+		if (ft_strcmp(game->player.direction, "left") == 0)
 			return (game->textures.left);
 	}
 	if (i <= 10)
 	{
-		if (strcmp(game->player.direction, "right") == 0)
+		if (ft_strcmp(game->player.direction, "right") == 0)
 			return (game->textures.semi);
-		if (strcmp(game->player.direction, "up") == 0)
+		if (ft_strcmp(game->player.direction, "up") == 0)
 			return(game->textures.semi_up);
-		if (strcmp(game->player.direction, "down") == 0)
+		if (ft_strcmp(game->player.direction, "down") == 0)
 			return (game->textures.semi_down);
-		if (strcmp(game->player.direction, "left") == 0)
+		if (ft_strcmp(game->player.direction, "left") == 0)
 			return (game->textures.semi_left);
 	}
 	if (i <= 15)
 		return (game->textures.closed);
 	if (i <= 20)
 	{
-		if (strcmp(game->player.direction, "right") == 0)
+		if (ft_strcmp(game->player.direction, "right") == 0)
 			return(game->textures.semi);
-		if (strcmp(game->player.direction, "up") == 0)
+		if (ft_strcmp(game->player.direction, "up") == 0)
 			return(game->textures.semi_up);
-		if (strcmp(game->player.direction, "down") == 0)
+		if (ft_strcmp(game->player.direction, "down") == 0)
 			return (game->textures.semi_down);
-		if (strcmp(game->player.direction, "left") == 0)
+		if (ft_strcmp(game->player.direction, "left") == 0)
 			return (game->textures.semi_left);
 	}
 	if (i > 20)
 		i = 0;
-	if (strcmp(game->player.direction, "right") == 0)
+	if (ft_strcmp(game->player.direction, "right") == 0)
 		return (game->textures.player);
-	if (strcmp(game->player.direction, "up") == 0)
+	if (ft_strcmp(game->player.direction, "up") == 0)
 		return (game->textures.up);
-	if (strcmp(game->player.direction, "down") == 0)
+	if (ft_strcmp(game->player.direction, "down") == 0)
 		return (game->textures.down);
-	if (strcmp(game->player.direction, "left") == 0)
+	if (ft_strcmp(game->player.direction, "left") == 0)
 		return (game->textures.left);
 	return (game->textures.player);
 

@@ -1,7 +1,7 @@
 NAME = so_long
 CC = cc
 RM = rm -f
-CFLAGS = -Wall -Wextra -Werror -arch x86_64
+CFLAGS = -Wall -Wextra -Werror #-arch x86_64
 SRC_DIR = src
 UTIL_DIR = utils
 MLX_DIR = mlx
@@ -32,7 +32,8 @@ SRCS = $(SRC_DIR)/graphical_utils.c \
 	   $(UTIL_DIR)/utils1.c \
 	   $(UTIL_DIR)/utils2.c \
 	   $(UTIL_DIR)/utils3.c \
-	   $(UTIL_DIR)/ft_strtrim.c
+	   $(UTIL_DIR)/ft_strtrim.c \
+	   $(UTIL_DIR)/ft_strcmp.c
 
 OBJS = $(SRCS:.c=.o)
 $(NAME): $(OBJS)
@@ -43,3 +44,5 @@ clean:
 fclean: clean
 	$(RM) $(NAME)
 re: fclean all
+
+# .PHONY all re clean fclean

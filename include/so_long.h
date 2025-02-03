@@ -6,7 +6,7 @@
 /*   By: arturhar <arturhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 00:59:00 by arturhar          #+#    #+#             */
-/*   Updated: 2024/11/26 21:21:21 by arturhar         ###   ########.fr       */
+/*   Updated: 2025/02/03 15:20:38 by arturhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,7 @@ void			init_textures(t_game *game);
 void			destroy_textures(t_game *game);
 int				exit_game(t_game *game);
 void *get_sprite(t_game *game);
+int	ft_strcmp(const char *str1, const char *str2);
 
 /*
  ** ft_printf
